@@ -26,6 +26,9 @@ module.exports = {
                     limit: 8192,
                     name: './static/img/[hash].[ext]'
                 }
+            },
+            {
+                test: /\.(png|jpg|gif)$/
             }
         ]
     }
