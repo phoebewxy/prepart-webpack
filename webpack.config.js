@@ -11,7 +11,7 @@ pages.forEach((item) => {
         filename: 'html/'+item.lang+'/'+item.page+'.html',
         template: path.resolve(__dirname, 'src/views/'+item.page+'/index.ejs'),
         chunks:[item.page]
-    },require('./data/'+item.lang+'/'+item.page+'/'+item.page+'.json')));
+    },require('./dist/data/'+item.lang+'/'+item.page+'/'+item.page+'.json')));
     htmlPlugins.push(htmlPlugin);
 })
 
