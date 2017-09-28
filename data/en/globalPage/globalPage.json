@@ -1,6 +1,6 @@
 {
-    "title": "index",
-    "header": "index_header",
-    "content": "index_content",
-    "footer": "index_footer"
+    "title": "globalPage",
+    "header": "globalPage_header",
+    "content": "globalPage_content",
+    "footer": "globalPage_footer"
 }

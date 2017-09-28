@@ -3,9 +3,20 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 const viewsPath = './src/views';
+const pages = require('./build/static');
+
+var htmlPlugins = [];
+pages.forEach((item) => {
+    const htmlPlugin = new htmlWebpackPlugin(Object.assign({
+        filename: 'html/'+item.lang+'/'+item.page+'.html',
+        template: path.resolve(__dirname, 'src/views/'+item.page+'/index.ejs'),
+        chunks:[item.page]
+    },require('./data/'+item.lang+'/'+item.page+'/'+item.page+'.json')));
+    htmlPlugins.push(htmlPlugin);
+})
 
 const extractLess = new ExtractTextPlugin({
-    filename: "./static/css/[name].[contenthash].css",
+    filename: "css/[name].[contenthash].css",
 });
 
 module.exports = {
@@ -15,21 +26,11 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: './static/js/[name].bundle.js'
+        filename: 'js/[name].bundle.js'
     },
     plugins: [
-        new htmlWebpackPlugin(Object.assign({
-            filename: 'html/globalPage.html',
-            template: path.resolve(__dirname, 'src/views/globalPage/index.ejs'),
-            chunks:['globalPage']
-        },require('./data/en/globalPage/globalPage.json'))),
-        new htmlWebpackPlugin(Object.assign({
-            filename: 'html/hotelPage.html',
-            template: path.resolve(__dirname, 'src/views/hotelPage/index.ejs'),
-            chunks:['hotelPage']
-        },require('./data/en/globalPage/globalPage.json'))),
         extractLess
-    ],
+    ].concat(htmlPlugins),
     module: {
         rules: [
             {
@@ -37,7 +38,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 8192,
-                    name: './static/img/[hash].[ext]'
+                    name: 'img/[hash].[ext]'
                 }
             },
             {
