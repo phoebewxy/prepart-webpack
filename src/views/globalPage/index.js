@@ -1,3 +1,3 @@
 require('./index.less');
 
-console.log(111);
+console.log('globalPage');

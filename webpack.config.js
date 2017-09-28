@@ -10,17 +10,24 @@ const extractLess = new ExtractTextPlugin({
 
 module.exports = {
     entry : {
-        index: './src/views/globalPage/index.js'
+        globalPage: './src/views/globalPage/index.js',
+        hotelPage: './src/views/hotelPage/index.js'
     },
     output: {
-        path: path.resolve(__dirname, 'dist/globalPage'),
+        path: path.resolve(__dirname, 'dist'),
         filename: './static/js/[name].bundle.js'
     },
     plugins: [
         new htmlWebpackPlugin(Object.assign({
-            filename: 'index.html',
+            filename: 'html/globalPage.html',
             template: path.resolve(__dirname, 'src/views/globalPage/index.ejs'),
-        },require('./public/data/en/index.json'))),
+            chunks:['globalPage']
+        },require('./data/en/globalPage/globalPage.json'))),
+        new htmlWebpackPlugin(Object.assign({
+            filename: 'html/hotelPage.html',
+            template: path.resolve(__dirname, 'src/views/hotelPage/index.ejs'),
+            chunks:['hotelPage']
+        },require('./data/en/globalPage/globalPage.json'))),
         extractLess
     ],
     module: {
@@ -43,6 +50,10 @@ module.exports = {
                     }],
                     fallback: "style-loader" 
                 })
+            },
+            {
+                test: /\.ejs$/,
+                loader: 'ejs-loader'
             }
         ]
     }
