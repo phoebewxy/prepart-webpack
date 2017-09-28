@@ -1,7 +1,12 @@
 const webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 const viewsPath = './src/views';
+
+const extractLess = new ExtractTextPlugin({
+    filename: "./static/css/[name].[contenthash].css",
+});
 
 module.exports = {
     entry : {
@@ -9,13 +14,14 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'dist/globalPage'),
-        filename: '[name].bundle.js'
+        filename: './static/js/[name].bundle.js'
     },
     plugins: [
         new htmlWebpackPlugin(Object.assign({
             filename: 'index.html',
             template: path.resolve(__dirname, 'src/views/globalPage/index.ejs'),
-        },require('./public/data/en/index.json')))
+        },require('./public/data/en/index.json'))),
+        extractLess
     ],
     module: {
         rules: [
@@ -28,7 +34,15 @@ module.exports = {
                 }
             },
             {
-                test: /\.(png|jpg|gif)$/
+                test: /\.less$/,
+                use: extractLess.extract({
+                    use: [{
+                        loader: "css-loader"
+                    }, {
+                        loader: "less-loader"
+                    }],
+                    fallback: "style-loader" 
+                })
             }
         ]
     }
