@@ -20,7 +20,7 @@ module.exports = function({ htmlWebpackPlugin }) {
         })
         resolve(html)
 
-        // axios.get('http://127.0.0.1:3008/cityPage.json')
+        // axios.get('http://127.0.0.1:3000/data/en/cityPage.json')
         // .then(function(response) {
         //     var html = index({
         //         header:header({
@@ -37,5 +37,6 @@ module.exports = function({ htmlWebpackPlugin }) {
         // .catch(function(err) {
         //   console.log(err);
         // })
+
     });
 };

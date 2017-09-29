@@ -7,11 +7,13 @@ const pages = require('./build/static');
 
 var htmlPlugins = [];
 pages.forEach((item) => {
+    var hotel = item.hotel? item.hotel+'/' : '';
     const htmlPlugin = new htmlWebpackPlugin({
-        filename: 'html/'+item.lang+'/'+item.page+'.html',
+        filename: 'html/'+item.lang+'/'+hotel+item.page+'.html',
         template: './src/views/'+item.page+'/html.js',
         chunks:[item.page],
-        lang: item.lang
+        lang: item.lang,
+        hotel: item.hotel
     });
     htmlPlugins.push(htmlPlugin);
 })

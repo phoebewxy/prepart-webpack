@@ -6,7 +6,7 @@ var axios = require('axios');
 
 module.exports = function({ htmlWebpackPlugin }) {
     return new Promise(function(resolve, reject) {
-        var data = require('../../../public/data/'+htmlWebpackPlugin.options.lang+'/hotelPage.json');
+        var data = require('../../../public/data/'+htmlWebpackPlugin.options.lang+'/hotelPage_'+htmlWebpackPlugin.options.hotel+'.json');
         
         var html = index({
             header:header({
