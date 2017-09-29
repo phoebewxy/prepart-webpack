@@ -1,6 +1,6 @@
 
 var langs = ['en', 'zh'];
-var views = ['globalPage', 'hotelPage'];
+var views = ['globalPage', 'hotelPage', 'cityPage'];
 var pages = (function() {
     var pagesArr = [];
     views.forEach(function(page, index) {

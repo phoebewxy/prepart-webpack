@@ -7,11 +7,12 @@ const pages = require('./build/static');
 
 var htmlPlugins = [];
 pages.forEach((item) => {
-    const htmlPlugin = new htmlWebpackPlugin(Object.assign({
+    const htmlPlugin = new htmlWebpackPlugin({
         filename: 'html/'+item.lang+'/'+item.page+'.html',
-        template: path.resolve(__dirname, 'src/views/'+item.page+'/index.ejs'),
-        chunks:[item.page]
-    },require('./public/data/'+item.lang+'/'+item.page+'.json')));
+        template: './src/views/'+item.page+'/html.js',
+        chunks:[item.page],
+        lang: item.lang
+    });
     htmlPlugins.push(htmlPlugin);
 })
 
@@ -22,7 +23,8 @@ const extractLess = new ExtractTextPlugin({
 module.exports = {
     entry : {
         globalPage: './src/views/globalPage/index.js',
-        hotelPage: './src/views/hotelPage/index.js'
+        hotelPage: './src/views/hotelPage/index.js',
+        cityPage: './src/views/cityPage/index.js',
     },
     output: {
         path: path.resolve(__dirname, 'dist'),

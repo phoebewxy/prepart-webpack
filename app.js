@@ -29,7 +29,7 @@ app.use(cookieParser());
 //   force: true
 // }));
 // app.use(lessMiddleware('/css'));
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 

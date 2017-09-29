@@ -12,9 +12,9 @@ router.get('/:lang/:page', function(req, res, next) {
 })
 
 router.get('/:lang/orderPage/order', function(req, res, next) {  
-  axios.get('http://localhost:3000/data/'+req.params.lang+'/orderPage/orderPage.json')
+  axios.get('http://localhost:3000/data/'+req.params.lang+'/orderPage.json')
     .then(function(response) {
-      res.render('index', response.data);
+      res.render('orderPage/orderPage', response.data);
     })
     .catch(function(err) {
       console.log(err);
