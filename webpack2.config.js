@@ -10,7 +10,7 @@ pages.forEach((item) => {
     var hotel = item.hotel? item.hotel+'/' : '';
     const htmlPlugin = new htmlWebpackPlugin({
         filename: 'html/'+item.lang+'/'+hotel+item.page+'.html',
-        template: './src/views/'+item.page+'/html.js',
+        template: './src/views/static/'+item.page+'/html.js',
         chunks:[item.page],
         lang: item.lang,
         hotel: item.hotel
@@ -24,9 +24,9 @@ const extractLess = new ExtractTextPlugin({
 
 module.exports = {
     entry : {
-        globalPage: './src/views/globalPage/index.js',
-        hotelPage: './src/views/hotelPage/index.js',
-        cityPage: './src/views/cityPage/index.js',
+        globalPage: './src/views/static/globalPage/index.js',
+        hotelPage: './src/views/static/hotelPage/index.js',
+        cityPage: './src/views/static/cityPage/index.js',
     },
     output: {
         path: path.resolve(__dirname, 'dist'),

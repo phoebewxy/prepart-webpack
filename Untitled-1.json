@@ -1,0 +1,20 @@
+{
+    "globalPage": {
+        "lang": ["en","zh"]
+    },
+    "cityPage": {
+        "lang": ["zh"]
+    },
+    "hotelPage": {
+        "hotels": [
+            {
+                "hotel": "slbj",
+                "lang": ["en", "zh"]
+            },
+            {
+                "hotel": "slhk",
+                "lang": ["en"]
+            }
+        ]
+    }
+}
