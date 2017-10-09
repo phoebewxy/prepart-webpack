@@ -2,21 +2,6 @@ const webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
-const viewsPath = './src/views';
-const pages = require('./build/static');
-
-var htmlPlugins = [];
-pages.forEach((item) => {
-    var hotel = item.hotel? item.hotel+'/' : '';
-    const htmlPlugin = new htmlWebpackPlugin({
-        filename: 'html/'+item.lang+'/'+hotel+item.page+'.html',
-        template: './src/views/static/'+item.page+'/html.js',
-        chunks:[item.page],
-        lang: item.lang,
-        hotel: item.hotel
-    });
-    htmlPlugins.push(htmlPlugin);
-})
 
 const extractLess = new ExtractTextPlugin({
     filename: "css/[name].[contenthash].css",
@@ -34,7 +19,7 @@ module.exports = {
     },
     plugins: [
         extractLess
-    ].concat(htmlPlugins),
+    ],
     module: {
         rules: [
             {

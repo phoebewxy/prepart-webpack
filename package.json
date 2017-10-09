@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "build": "webpack",
-    "build2": "webpack --config webpack2.config.js"
+    "build": "node build/build.js"
   },
   "dependencies": {
     "axios": "^0.16.2",
