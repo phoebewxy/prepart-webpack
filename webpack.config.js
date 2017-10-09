@@ -2,18 +2,6 @@ const webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
-const viewsPath = './src/views';
-const pages = require('./build/static');
-
-var htmlPlugins = [];
-pages.forEach((item) => {
-    const htmlPlugin = new htmlWebpackPlugin(Object.assign({
-        filename: 'html/'+item.lang+'/'+item.page+'.html',
-        template: path.resolve(__dirname, 'src/views/'+item.page+'/index.ejs'),
-        chunks:[item.page]
-    },require('./public/data/'+item.lang+'/'+item.page+'.json')));
-    htmlPlugins.push(htmlPlugin);
-})
 
 const extractLess = new ExtractTextPlugin({
     filename: "css/[name].[contenthash].css",
@@ -21,8 +9,9 @@ const extractLess = new ExtractTextPlugin({
 
 module.exports = {
     entry : {
-        globalPage: './src/views/globalPage/index.js',
-        hotelPage: './src/views/hotelPage/index.js'
+        globalPage: './src/views/static/globalPage/index.js',
+        hotelPage: './src/views/static/hotelPage/index.js',
+        cityPage: './src/views/static/cityPage/index.js',
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -30,7 +19,7 @@ module.exports = {
     },
     plugins: [
         extractLess
-    ].concat(htmlPlugins),
+    ],
     module: {
         rules: [
             {

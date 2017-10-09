@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var webpack = require('webpack');
-var webpackConfig = require('../webpack2.config');
+var webpackConfig = require('../webpack.config');
 var htmlWebpackPlugin = require('html-webpack-plugin');
 var absPath = (dir) => { return path.resolve(__dirname, dir) };
 
